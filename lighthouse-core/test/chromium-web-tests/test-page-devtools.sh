@@ -32,23 +32,14 @@ set -euo pipefail
 latest_content_shell_dir=$(ls -t "$LH_ROOT/.tmp/chromium-web-tests/content-shells/" | head -n1)
 latest_content_shell="$LH_ROOT/.tmp/chromium-web-tests/content-shells/$latest_content_shell_dir"
 
-roll_devtools() {
-  # Roll devtools. Besides giving DevTools the latest lighthouse source files,
-  # this also copies over the webtests.
-  cd "$LH_ROOT"
-  yarn devtools "$DEVTOOLS_PATH"
-  cd -
-}
-
 # Run a very basic server on port 8000. Only thing we need is:
 #   - /devtools -> the layout tests for devtools frontend
 #   - /inspector-sources -> the inspector resources from the content shell
 #   - CORS (Access-Control-Allow-Origin header)
 
 # Setup inspector-sources.
+yarn devtools "$DEVTOOLS_PATH"
 cd "$DEVTOOLS_PATH"
-git --no-pager log -1
-roll_devtools
 autoninja -C out/Default # Build devtools resources.
 cd -
 ln -s "$DEVTOOLS_PATH/out/Default/resources/inspector" "$DEVTOOLS_PATH/test/webtests/http/tests/inspector-sources"
@@ -97,8 +88,6 @@ export PYTHONPATH="${PYTHONPATH:-}:$BLINK_TOOLS_PATH/latest/third_party/typ"
 
 # Don't quit if the python command fails.
 set +e
-# Print the python command.
-set -x
 
 python \
   "$BLINK_TOOLS_PATH/latest/third_party/blink/tools/run_web_tests.py" \
@@ -108,7 +97,6 @@ python \
   --time-out-ms=60000 \
   http/tests/devtools/lighthouse/lighthouse-run-dt.js
 
-set +x
 set -e
 
 rm -rf "$LH_ROOT/.tmp/layout-test-results"
