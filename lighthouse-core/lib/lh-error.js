@@ -23,7 +23,7 @@ const UIStrings = {
    * @description Error message explaining that the First Contentful Paint metric was not seen during the page load.
    * @example {NO_FCP} errorCode
    * */
-  noFcp: 'The page did not paint any content. Please ensure you keep the browser window foreground during the load and try again. ({errorCode})',
+  noFcp: 'The page did not paint any content. Please ensure you keep the browser window in the foreground during the load and try again. ({errorCode})',
   /**
    * @description Error message explaining that the page loaded too slowly to perform a Lighthouse run.
    * @example {FMP_TOO_LATE_FOR_FCPUI} errorCode
