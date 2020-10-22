@@ -295,9 +295,7 @@ function getNodeSelector(node) {
    * @param {Element} node
    */
   function getSelectorPart(node) {
-    if (node instanceof ShadowRoot) {
-      node = node.host;
-    }
+    node = node instanceof ShadowRoot ? node.host : node;
     let part = node.tagName.toLowerCase();
     if (node.id) {
       part += '#' + node.id;
@@ -381,9 +379,7 @@ function getNodeLabel(node) {
     return str.slice(0, maxLength - 1) + '…';
   }
 
-  if (node instanceof ShadowRoot) {
-    node = node.host;
-  }
+  node = node instanceof ShadowRoot ? node.host : node;
   const tagName = node.tagName.toLowerCase();
   // html and body content is too broad to be useful, since they contain all page content
   if (tagName !== 'html' && tagName !== 'body') {
@@ -409,9 +405,7 @@ function getNodeLabel(node) {
 /* istanbul ignore next */
 function getBoundingClientRect(element) {
   // The protocol does not serialize getters, so extract the values explicitly.
-  if (element instanceof ShadowRoot) {
-    element = element.host;
-  }
+  element = element instanceof ShadowRoot ? element.host : element;
   const rect = element.getBoundingClientRect();
   return {
     top: Math.round(rect.top),
