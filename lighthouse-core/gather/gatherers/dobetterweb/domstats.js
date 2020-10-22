@@ -9,7 +9,7 @@
  * and total number of elements used on the page.
  */
 
-/* global getNodePath, getOuterHTMLSnippet */
+/* global getNodeDetails */
 
 'use strict';
 
@@ -64,13 +64,11 @@ function getDOMStats(element, deep = true) {
   return {
     depth: {
       max: result.maxDepth,
-      devtoolsNodePath: getNodePath(deepestElement),
-      snippet: getOuterHTMLSnippet(deepestElement),
+      ...getNodeDetails(deepestElement),
     },
     width: {
       max: result.maxWidth,
-      devtoolsNodePath: getNodePath(parentWithMostChildren),
-      snippet: getOuterHTMLSnippet(parentWithMostChildren),
+      ...getNodeDetails(parentWithMostChildren),
     },
     totalBodyElements: result.numElements,
   };
@@ -87,6 +85,7 @@ class DOMStats extends Gatherer {
     const expression = `(function() {
       ${pageFunctions.getNodePathString};
       ${pageFunctions.getOuterHTMLSnippetString};
+      ${pageFunctions.getNodeDetailsString};
       return (${getDOMStats.toString()}(document.body));
     })()`;
     await driver.sendCommand('DOM.enable');
