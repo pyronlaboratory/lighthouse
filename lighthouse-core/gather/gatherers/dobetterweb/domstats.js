@@ -83,8 +83,6 @@ class DOMStats extends Gatherer {
     const driver = passContext.driver;
 
     const expression = `(function() {
-      ${pageFunctions.getNodePathString};
-      ${pageFunctions.getOuterHTMLSnippetString};
       ${pageFunctions.getNodeDetailsString};
       return (${getDOMStats.toString()}(document.body));
     })()`;
