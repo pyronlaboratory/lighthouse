@@ -95,7 +95,6 @@ class DOMSize extends Audit {
     const items = [
       {
         statistic: str_(UIStrings.statisticDOMElements),
-        element: '',
         value: stats.totalBodyElements,
       },
       {
@@ -105,10 +104,6 @@ class DOMSize extends Audit {
           snippet: stats.depth.snippet,
         }),
         statistic: str_(UIStrings.statisticDOMDepth),
-        element: {
-          type: 'code',
-          value: stats.depth.snippet,
-        },
         value: stats.depth.max,
       },
       {
@@ -118,10 +113,6 @@ class DOMSize extends Audit {
           snippet: stats.width.snippet,
         }),
         statistic: str_(UIStrings.statisticDOMWidth),
-        element: {
-          type: 'code',
-          value: stats.width.snippet,
-        },
         value: stats.width.max,
       },
     ];
