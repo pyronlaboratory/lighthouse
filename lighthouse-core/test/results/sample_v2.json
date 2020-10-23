@@ -3641,7 +3641,7 @@
           {
             "node": {
               "type": "node",
-              "path": "3,HTML,1,BODY,4,DIV",
+              "path": "3,HTML,1,BODY,4,DIV,a,#document-fragment",
               "snippet": "<div id=\"shadow-root-container\">",
               "selector": "body > div#shadow-root-container",
               "nodeLabel": "div"
