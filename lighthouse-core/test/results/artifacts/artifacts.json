@@ -2412,7 +2412,7 @@
     "width": {
       "max": 100,
       "devtoolsNodePath": "3,HTML,1,BODY,4,DIV,a,#document-fragment",
-      "selector": "div#shadow-root-container",
+      "selector": "body > div#shadow-root-container",
       "boundingRect": {
         "top": 316,
         "bottom": 316,

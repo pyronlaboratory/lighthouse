@@ -295,7 +295,6 @@ function getNodeSelector(node) {
    * @param {Element} node
    */
   function getSelectorPart(node) {
-    node = node instanceof ShadowRoot ? node.host : node;
     let part = node.tagName.toLowerCase();
     if (node.id) {
       part += '#' + node.id;
@@ -378,8 +377,6 @@ function getNodeLabel(node) {
     }
     return str.slice(0, maxLength - 1) + '…';
   }
-
-  node = node instanceof ShadowRoot ? node.host : node;
   const tagName = node.tagName.toLowerCase();
   // html and body content is too broad to be useful, since they contain all page content
   if (tagName !== 'html' && tagName !== 'body') {
@@ -405,7 +402,6 @@ function getNodeLabel(node) {
 /* istanbul ignore next */
 function getBoundingClientRect(element) {
   // The protocol does not serialize getters, so extract the values explicitly.
-  element = element instanceof ShadowRoot ? element.host : element;
   const rect = element.getBoundingClientRect();
   return {
     top: Math.round(rect.top),
@@ -456,12 +452,13 @@ const getNodeDetailsString = `function getNodeDetails(elem) {
   ${getBoundingClientRect.toString()};
   ${getOuterHTMLSnippet.toString()};
   ${getNodeLabel.toString()};
+  const shadowRootElem = elem instanceof ShadowRoot ? elem.host : elem;
   return {
     devtoolsNodePath: getNodePath(elem),
-    selector: getNodeSelector(elem),
-    boundingRect: getBoundingClientRect(elem),
+    selector: getNodeSelector(shadowRootElem),
+    boundingRect: getBoundingClientRect(shadowRootElem),
     snippet: getOuterHTMLSnippet(elem),
-    nodeLabel: getNodeLabel(elem),
+    nodeLabel: getNodeLabel(shadowRootElem),
   };
 }`;
 
