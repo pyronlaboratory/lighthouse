@@ -35,7 +35,7 @@ const UIStrings = {
    */
   warningSlowHostCpu: 'The device that ran this test appears to have a slower CPU than  ' +
   'Lighthouse expects. This can negatively affect your performance score. Learn more about using ' +
-  '[custom throttling settings](https://github.com/GoogleChrome/lighthouse/blob/master/docs/throttling.md#calibrating-multipliers) ' +
+  '[custom throttling settings](https://github.com/GoogleChrome/lighthouse/blob/master/docs/throttling.md#slow-cpu-warnings-in-the-lighthouse-report) ' +
   'to calibrate your device.',
 };
 
