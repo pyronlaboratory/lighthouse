@@ -130,3 +130,11 @@ Below is a table of the various `cpuSlowdownMultipliers` you might want to use t
 # Run Lighthouse with a custom multiplier
 lighthouse --throttling.cpuSlowdownMultiplier=6 https://example.com
 ```
+
+## Slow CPU Warnings in the Lighthouse Report
+
+When Lighthouse is run from the CLI with default settings on an underpowered device, a warning will be added to the report.
+
+To address this warning and receive more accurate results, enter your CPU/Memory Power value from the bottom of the report into the [Lighthouse CPU Throttling calculator](https://lighthouse-cpu-throttling-calculator.vercel.app/) or use the tables above to adjust the `cpuSlowdownMultiplier` to a more accurate value.
+
+![Screenshot of CPU/Memory Power in the Lighthouse report](https://user-images.githubusercontent.com/2301202/96950078-1b03d380-14af-11eb-9583-fbf8133315b2.png)
