@@ -16,7 +16,8 @@ const config = {
   audits: [
     'autocomplete',
     'full-page-screenshot',
-    'unsized-images',
+    'large-javascript-libraries',
+    'script-treemap-data',
   ],
   passes: [{
     passName: 'defaultPass',
@@ -27,15 +28,16 @@ const config = {
   categories: {
     // @ts-ignore: `title` is required in CategoryJson. setting to the same value as the default
     // config is awkward - easier to omit the property here. Will defer to default config.
+    'performance': {
+      auditRefs: [
+        {id: 'large-javascript-libraries', weight: 0, group: 'diagnostics'},
+      ],
+    },
+    // @ts-ignore: `title` is required in CategoryJson. setting to the same value as the default
+    // config is awkward - easier to omit the property here. Will defer to default config.
     'best-practices': {
       auditRefs: [
         {id: 'autocomplete', weight: 0, group: 'best-practices-ux'},
-      ],
-    },
-    // @ts-ignore same reason as above
-    'performance': {
-      auditRefs: [
-        {id: 'unsized-images', weight: 0, group: 'diagnostics'},
       ],
     },
   },

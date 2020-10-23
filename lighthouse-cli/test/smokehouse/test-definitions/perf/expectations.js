@@ -72,11 +72,11 @@ module.exports = [
           details: {
             items: [
               {resourceType: 'total', requestCount: 10, transferSize: '168000±1000'},
-              {resourceType: 'font', requestCount: 2, transferSize: '80000±1000'},
+              {resourceType: 'font', requestCount: 2, transferSize: '81000±1000'},
               {resourceType: 'script', requestCount: 3, transferSize: '55000±1000'},
               {resourceType: 'image', requestCount: 2, transferSize: '28000±1000'},
               {resourceType: 'document', requestCount: 1, transferSize: '2200±100'},
-              {resourceType: 'other', requestCount: 1, transferSize: '1000±50'},
+              {resourceType: 'other', requestCount: 1, transferSize: '1030±100'},
               {resourceType: 'stylesheet', requestCount: 1, transferSize: '450±100'},
               {resourceType: 'media', requestCount: 0, transferSize: 0},
               {resourceType: 'third-party', requestCount: 0, transferSize: 0},
@@ -172,7 +172,6 @@ module.exports = [
       TraceElements: [
         {
           traceEventType: 'largest-contentful-paint',
-          selector: 'body > div#late-content > img',
           nodeLabel: 'img',
           snippet: '<img src="../dobetterweb/lighthouse-480x318.jpg">',
           boundingRect: {
@@ -201,7 +200,6 @@ module.exports = [
         },
         {
           traceEventType: 'layout-shift',
-          selector: 'body > div#late-content > div',
           nodeLabel: 'Sorry!',
           snippet: '<div style="height: 18px;">',
           boundingRect: {
@@ -215,6 +213,10 @@ module.exports = [
           score: '0.026 +/- 0.01',
         },
         {
+          // Requires compositor failure reasons to be in the trace
+          // for `failureReasonsMask` and `unsupportedProperties`
+          // https://chromiumdash.appspot.com/commit/995baabedf9e70d16deafc4bc37a2b215a9b8ec9
+          _minChromiumMilestone: 86,
           traceEventType: 'animation',
           selector: 'body > div#animate-me',
           nodeLabel: 'div',
@@ -229,9 +231,6 @@ module.exports = [
           },
           animations: [
             {
-              // Requires compositor failure reasons to be in the trace
-              // https://chromiumdash.appspot.com/commit/995baabedf9e70d16deafc4bc37a2b215a9b8ec9
-              _minChromiumMilestone: 86,
               name: 'anim',
               failureReasonsMask: 8224,
               unsupportedProperties: ['background-color'],
@@ -253,7 +252,7 @@ module.exports = [
                 node: {
                   type: 'node',
                   nodeLabel: 'img',
-                  selector: 'body > div#late-content > img',
+                  path: '0,HTML,1,BODY,1,DIV,a,#document-fragment,0,SECTION,0,IMG',
                 },
               },
             ],

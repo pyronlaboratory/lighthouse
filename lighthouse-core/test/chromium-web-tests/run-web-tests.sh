@@ -59,7 +59,7 @@ echo "Server is up"
 rm -rf "$latest_content_shell/out/Release/layout-test-results"
 
 # Add typ to python path. The regular method assumes there is a Chromium checkout.
-export PYTHONPATH="${PYTHONPATH}:$BLINK_TOOLS_PATH/latest/third_party/typ"
+export PYTHONPATH="${PYTHONPATH:-}:$BLINK_TOOLS_PATH/latest/third_party/typ"
 
 # Don't quit if the python command fails.
 set +e
@@ -84,7 +84,7 @@ cp "$DEVTOOLS_PATH/test/webtests/http/tests/devtools/lighthouse/"*-expected.txt 
 if [ ! $status -eq 0 ]; then
   # Print failure diffs to stdout.
   find "$LH_ROOT/.tmp/layout-test-results/retry_3" -name '*-diff.txt' -exec cat {} \;
-  echo "❌❌❌ webtests failed. to rebaseline run: yarn update:webtests ❌❌❌"
+  echo "❌❌❌ webtests failed. to rebaseline run: yarn update:test-devtools ❌❌❌"
 fi
 
 exit $status

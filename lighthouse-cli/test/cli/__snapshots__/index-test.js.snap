@@ -169,7 +169,7 @@ Object {
       "path": "non-composited-animations",
     },
     Object {
-      "path": "large-javascript-libraries",
+      "path": "unsized-images",
     },
     Object {
       "path": "valid-source-maps",
@@ -1030,7 +1030,7 @@ Object {
         },
         Object {
           "group": "diagnostics",
-          "id": "large-javascript-libraries",
+          "id": "unsized-images",
           "weight": 0,
         },
         Object {
